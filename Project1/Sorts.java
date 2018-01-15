@@ -73,10 +73,73 @@ public class Sorts {
    }
 
    public static void quickSort(int[] arr, int N) {
-
+      quickSort(arr, 0, N-1);
 
    }
 
+   private static void quickSort(int[] list, int first, int last) {
+      if(first < last) {
+         setPivotToEnd(list, first, last);
+         int pivotIndex = splitList(list, first, last);
 
+         quickSort(list, first, pivotIndex-1);
+         quickSort(list, pivotIndex+1, last);
+      }
+   }
+
+   private static void setPivotToEnd(int[] arr, int left, int right) {
+      int middle = (left+right)/2;
+
+      int smallest;
+      int median;
+      int biggest;
+
+      if(arr[left] <= arr[middle] && arr[middle] <= arr[right]) {
+         smallest = arr[left];
+         median = arr[middle];
+         biggest = arr[right];
+      }
+      else if(arr[left] >= arr[middle] && arr[left] <= arr[right]) {
+         smallest = arr[middle];
+         median = arr[left];
+         biggest = arr[right];
+      }
+      else {
+         smallest = arr[left] <= arr[right] ? arr[left] : arr[right];
+         median = arr[right];
+         biggest = smallest == arr[left] ? arr[right] : arr[left];
+      }
+
+      arr[left] = smallest;
+      arr[right] = median;
+      arr[middle] = biggest;
+   }
+
+   private static int splitList(int[] arr, int left, int right) {
+      int indexL = left;
+      int indexR = right-1;
+      int pivot = arr[right];
+
+      while(indexL < indexR) {
+         if(arr[indexL] < pivot) {
+            indexL += 1;
+         }
+         if(arr[indexR] > pivot) {
+            indexR -= 1;
+         }
+         if(indexL < indexR) {
+            int tmp = arr[indexL];
+            arr[indexL] = arr[indexR];
+            arr[indexR] = tmp;
+            indexL += 1;
+            indexR -= 1;
+         }
+      }
+
+      arr[right] = arr[indexL];
+      arr[indexL] = pivot;
+
+      return indexL;
+   }
 
 }
