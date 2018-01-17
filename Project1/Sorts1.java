@@ -1,16 +1,20 @@
 public class Sorts1 {
-   private static int mergeSortCounter = 0;
-   private static int quickSortCounter = 0;
+   private static long selectionSortCounter = 0;
+   private static long mergeSortCounter = 0;
+   private static long quickSortCounter = 0;
 
-   public static int selectionSort(int[] arr, int N) {
+   public static long selectionSort(int[] arr, int N) {
 
-      int comparisons = 0;
+      selectionSortCounter = 0;
+
       for(int curIndex = 0; curIndex < N; curIndex++) {
          int curMin = arr[curIndex];
          int curMinIndex = curIndex;
 
          for(int movingIndex = curIndex + 1; movingIndex < N; movingIndex++) {
-            comparisons++;
+
+            selectionSortCounter += 1;
+
             if(arr[movingIndex] < curMin) {
                curMin = arr[movingIndex];
                curMinIndex = movingIndex;
@@ -21,16 +25,18 @@ public class Sorts1 {
          arr[curIndex] = curMin;
          arr[curMinIndex] = tmp;
       }
-      return comparisons;
+
+      return selectionSortCounter;
    }
 
-   public static int  mergeSort(int[] arr, int N ) {
+   public static long mergeSort(int[] arr, int N ) {
+      mergeSortCounter = 0;
+
       mergeSort(arr, 0, N-1);
       return mergeSortCounter;
    }
 
    private static void mergeSort(int[] list, int first, int last) {
-      mergeSortCounter++;
       if(first < last) {
          int middleIndex = (first+last)/2;
 
@@ -41,6 +47,9 @@ public class Sorts1 {
       }
    }
 
+   /*
+    * left,middle,right are indices
+    */
    private static void mergeSortedHalves(int[] arr, int left, int middle, int right) {
       int[] tmp = new int[right-left+1];
 
@@ -49,7 +58,8 @@ public class Sorts1 {
       int k = 0;
 
       while(i <= middle && j <= right) {
-         mergeSortCounter++;
+         mergeSortCounter += 1;
+
          if(arr[i] < arr[j]) {
             tmp[k] = arr[i];
             i++;
@@ -80,7 +90,9 @@ public class Sorts1 {
       }
    }
 
-   public static int quickSort(int[] arr, int N) {
+   public static long quickSort(int[] arr, int N) {
+      quickSortCounter = 0;
+
       quickSort(arr, 0, N-1);
       return quickSortCounter;
 
@@ -102,7 +114,17 @@ public class Sorts1 {
       int smallest;
       int median;
       int biggest;
-      quickSortCounter++;
+
+      quickSortCounter += 2;
+
+      /* TODO
+       * split if statements:
+       * count++
+       * if:
+       *    count++:
+       *    if:
+       */
+
       if(arr[left] <= arr[middle] && arr[middle] <= arr[right]) {
          smallest = arr[left];
          median = arr[middle];
@@ -130,7 +152,14 @@ public class Sorts1 {
       int pivot = arr[right];
 
       while(indexL < indexR) {
-         quickSortCounter++;
+
+         quickSortCounter += 2;
+
+         /*
+          * TODO
+          * rewrite
+          */
+
          if(arr[indexL] < pivot) {
             indexL += 1;
          }

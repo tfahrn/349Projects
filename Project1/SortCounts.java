@@ -6,11 +6,13 @@ public class SortCounts{
       int[] listThree = new int[12800];
       Random rnd = new Random();
       for(int i = 100; i <= 12800 ; i *= 2){
-      int selectCount = 0;
-      int mergeCount = 0;
-      int quickCount = 0;
-         for(int k = 0; k < 100; k++){
-               for(int j = 0; j < i; j++){
+
+         long selectCount = 0;
+         long mergeCount = 0;
+         long quickCount = 0;
+
+         for(int k = 0; k < 100; k++) {
+            for(int j = 0; j < i; j++) {
                int randNum = rnd.nextInt();
                listOne[j] = randNum;
                listTwo[j] = randNum;
@@ -20,9 +22,14 @@ public class SortCounts{
             mergeCount += Sorts1.mergeSort(listTwo,i);
             quickCount += Sorts1.quickSort(listThree,i);
          }
-       System.out.format("N=%d: C_ss=%d, C_ms=%d, C_qs=%d\n",i,(selectCount)/100,
-                 (mergeCount)/100, (quickCount)/100);
-
+         
+         System.out.format("N=%d: C_ss=%d, C_ms=%d, C_qs=%d\n",i,(selectCount)/100, (mergeCount)/100, (quickCount)/100);
       }
    }
+
+   /*expected at N = 12800
+    * ss = 81913600
+    * ms = 158...
+    * qs = 202...
+    */
 }
