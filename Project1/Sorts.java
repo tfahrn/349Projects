@@ -1,3 +1,10 @@
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 1/19/2018
+ * Project 1
+ */
+
 public class Sorts {
 
    public static void selectionSort(int[] arr, int N) {

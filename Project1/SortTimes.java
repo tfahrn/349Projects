@@ -1,3 +1,10 @@
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 1/19/2018
+ * Project 1
+ */
+
 import java.util.Random;
 public class SortTimes{
 

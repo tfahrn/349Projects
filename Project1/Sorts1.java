@@ -1,3 +1,10 @@
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 1/19/2018
+ * Project 1
+ */
+
 public class Sorts1 {
    private static long selectionSortCounter = 0;
    private static long mergeSortCounter = 0;
