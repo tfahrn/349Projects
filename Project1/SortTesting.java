@@ -1,24 +1,47 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class SortTesting {
 
    public static void main(String[] args) {
-      int[] testArr1 = {3, 5, 6, 3, 3, -2, 9, 3};
+      Random rnd = new Random();
 
-      System.out.println("Pre sort: " + Arrays.toString(testArr1));
-      /*
-      Sorts.selectionSort(testArr1, testArr1.length);
-      System.out.println("Post sort: " + Arrays.toString(testArr1));
-      */
+      int[] testArray1 = new int[200000];
+      int[] testArray2 = new int[200000];
+      int[] testArray3 = new int[200000];
+      int[] sortedArray = new int[200000];
+      for(int i = 0; i < testArray1.length; i++) {
+         testArray1[i] = rnd.nextInt();
+         testArray2[i] = testArray1[i];
+         testArray3[i] = testArray1[i];
+         sortedArray[i] = testArray1[i];
+      }
 
+      Arrays.sort(sortedArray);
 
-      /*
-      Sorts.mergeSort(testArr1, testArr1.length);
-      System.out.println("Post sort: " + Arrays.toString(testArr1));
-      */
+      Sorts.selectionSort(testArray1, 200000);
 
-      Sorts.quickSort(testArr1, testArr1.length);
-      System.out.println("Post sort: " + Arrays.toString(testArr1));
+      for(int i = 0; i < testArray1.length; i++) {
+         if(testArray1[i] != sortedArray[i]) {
+            System.out.println("failed selectionsort");
+         }
+      }
+
+      Sorts.mergeSort(testArray2, 200000);
+
+      for(int i = 0; i < testArray2.length; i++) {
+         if(testArray1[i] != sortedArray[i]) {
+            System.out.println("failed quicksort");
+         }
+      }
+
+      Sorts.quickSort(testArray3, 200000);
+
+      for(int i = 0; i < testArray3.length; i++) {
+         if(testArray1[i] != sortedArray[i]) {
+            System.out.println("failed quicksort");
+         }
+      }
 
 
    }

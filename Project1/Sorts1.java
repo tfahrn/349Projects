@@ -111,31 +111,30 @@ public class Sorts1 {
    private static void setPivotToEnd(int[] arr, int left, int right) {
       int middle = (left+right)/2;
 
-      int smallest;
-      int median;
-      int biggest;
+      int smallest = arr[left];
+      int median = arr[left];
+      int biggest = arr[left];
 
-      quickSortCounter += 2;
+      quickSortCounter += 1;
 
-      /* TODO
-       * split if statements:
-       * count++
-       * if:
-       *    count++:
-       *    if:
-       */
-
-      if(arr[left] <= arr[middle] && arr[middle] <= arr[right]) {
-         smallest = arr[left];
-         median = arr[middle];
-         biggest = arr[right];
+      if(arr[left] <= arr[middle]) {
+         quickSortCounter += 1;
+         if(arr[middle] <= arr[right]) {
+            smallest = arr[left];
+            median = arr[middle];
+            biggest = arr[right];
+         }
       }
-      else if(arr[left] >= arr[middle] && arr[left] <= arr[right]) {
-         smallest = arr[middle];
-         median = arr[left];
-         biggest = arr[right];
+      else if(arr[left] >= arr[middle]) {
+         quickSortCounter += 1;
+         if(arr[left] <= arr[right]) {
+            smallest = arr[middle];
+            median = arr[left];
+            biggest = arr[right];
+         }
       }
       else {
+         quickSortCounter += 2;
          smallest = arr[left] <= arr[right] ? arr[left] : arr[right];
          median = arr[right];
          biggest = smallest == arr[left] ? arr[right] : arr[left];
@@ -151,21 +150,20 @@ public class Sorts1 {
       int indexR = right-1;
       int pivot = arr[right];
 
+
       while(indexL < indexR) {
-
-         quickSortCounter += 2;
-
-         /*
-          * TODO
-          * rewrite
-          */
-
-         if(arr[indexL] < pivot) {
+         quickSortCounter += 1;
+         while(indexL < indexR && arr[indexL] < pivot) {
+            quickSortCounter += 1;
             indexL += 1;
          }
-         if(arr[indexR] > pivot) {
+
+         quickSortCounter += 1;
+         while(indexL < indexR && arr[indexR] > pivot) {
+            quickSortCounter += 1;
             indexR -= 1;
          }
+
          if(indexL < indexR) {
             int tmp = arr[indexL];
             arr[indexL] = arr[indexR];
