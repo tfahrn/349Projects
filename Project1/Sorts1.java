@@ -158,20 +158,29 @@ public class Sorts1 {
       int pivot = arr[right];
 
 
-      while(indexL < indexR) {
-         quickSortCounter += 1;
-         while(indexL < indexR && arr[indexL] < pivot) {
+      while(indexL <= indexR) {
+
+         while(indexL <= indexR) {
             quickSortCounter += 1;
-            indexL += 1;
+            if(arr[indexL] < pivot) {
+               indexL += 1;
+            }
+            else {
+               break;
+            }
          }
 
-         quickSortCounter += 1;
-         while(indexL < indexR && arr[indexR] > pivot) {
+         while(indexL <= indexR) {
             quickSortCounter += 1;
-            indexR -= 1;
+            if(arr[indexR] > pivot) {
+               indexR -= 1;
+            }
+            else {
+               break;
+            }
          }
 
-         if(indexL < indexR) {
+         if(indexL <= indexR) {
             int tmp = arr[indexL];
             arr[indexL] = arr[indexR];
             arr[indexR] = tmp;

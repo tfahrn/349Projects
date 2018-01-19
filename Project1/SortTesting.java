@@ -5,48 +5,36 @@ public class SortTesting {
 
    public static void main(String[] args) {
       Random rnd = new Random();
+      
+      for(int sizeArr = 0; sizeArr < 20; sizeArr++) {
+         int[] testArr = new int[sizeArr];
 
-      int[] testArray1 = new int[200000];
-      int[] testArray2 = new int[200000];
-      int[] testArray3 = new int[200000];
-      int[] sortedArray = new int[200000];
-      for(int i = 0; i < testArray1.length; i++) {
-         testArray1[i] = rnd.nextInt();
-         testArray2[i] = testArray1[i];
-         testArray3[i] = testArray1[i];
-         sortedArray[i] = testArray1[i];
-      }
+         for(int i = 0; i < sizeArr; i++) {
+            testArr[i] = rnd.nextInt() % 1000;
+         }
 
-      Arrays.sort(sortedArray);
+         int[] ssTest = testArr.clone();
+         int[] msTest = testArr.clone();
+         int[] qsTest = testArr.clone();
+         int[] sortedArr = testArr.clone();
 
-      Sorts.selectionSort(testArray1, 200000);
+         Arrays.sort(sortedArr);
+         
+         Sorts.selectionSort(ssTest, sizeArr);
+         Sorts.mergeSort(msTest, sizeArr);
+         Sorts.quickSort(qsTest, sizeArr);
 
-      for(int i = 0; i < testArray1.length; i++) {
-         if(testArray1[i] != sortedArray[i]) {
-            System.out.println("failed selectionsort");
+         if(!Arrays.equals(ssTest, sortedArr)) {
+            System.out.println("Selection sort failed on test: " + Arrays.toString(testArr));
+         }
+         if(!Arrays.equals(msTest, sortedArr)) {
+            System.out.println("Merge sort failed on test: " + Arrays.toString(testArr));
+         }
+         if(!Arrays.equals(qsTest, sortedArr)) {
+            System.out.println("Quick sort failed on test: " + Arrays.toString(testArr));
+            System.out.println("Expected: " + Arrays.toString(sortedArr));
+            System.out.println("Actual: " + Arrays.toString(qsTest));
          }
       }
-
-      Sorts.mergeSort(testArray2, 200000);
-
-      for(int i = 0; i < testArray2.length; i++) {
-         if(testArray1[i] != sortedArray[i]) {
-            System.out.println("failed quicksort");
-         }
-      }
-
-      Sorts.quickSort(testArray3, 200000);
-
-      for(int i = 0; i < testArray3.length; i++) {
-         if(testArray1[i] != sortedArray[i]) {
-            System.out.println("failed quicksort");
-         }
-      }
-
-
    }
-
-
-
-
 }

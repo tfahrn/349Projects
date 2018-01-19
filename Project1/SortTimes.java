@@ -35,6 +35,7 @@ public class SortTimes{
             System.out.format("N=%d: T_ss=%d, T_ms=%d, T_qs=%d\n",i,(selectTime - start)/1000000,
                  ( mergeTime - selectTime)/1000000, (endTime - mergeTime)/1000000);
          }
+         System.out.println();
 
       }
 
