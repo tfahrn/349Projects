@@ -5,12 +5,9 @@
  * Project 1
  */
 
-import java.util.Arrays;
-
 public class Sorts {
 
    public static void selectionSort(int[] arr, int N) {
-
       for(int curIndex = 0; curIndex < N; curIndex++) {
          int curMin = arr[curIndex];
          int curMinIndex = curIndex;
@@ -28,7 +25,7 @@ public class Sorts {
       }
    }
 
-   public static void mergeSort(int[] arr, int N ) {
+   public static void mergeSort(int[] arr, int N) {
       mergeSort(arr, 0, N-1);
    }
 

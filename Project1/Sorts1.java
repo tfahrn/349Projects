@@ -11,7 +11,6 @@ public class Sorts1 {
    private static long quickSortCounter = 0;
 
    public static long selectionSort(int[] arr, int N) {
-
       selectionSortCounter = 0;
 
       for(int curIndex = 0; curIndex < N; curIndex++) {
@@ -21,7 +20,6 @@ public class Sorts1 {
          for(int movingIndex = curIndex + 1; movingIndex < N; movingIndex++) {
 
             selectionSortCounter += 1;
-
             if(arr[movingIndex] < curMin) {
                curMin = arr[movingIndex];
                curMinIndex = movingIndex;
@@ -117,13 +115,23 @@ public class Sorts1 {
 
    private static void setPivotToEnd(int[] arr, int left, int right) {
       int middle = (left+right)/2;
+      
+      if(right-left == 1) {
+         quickSortCounter += 1;
+         if(arr[left] > arr[right]) {
+            int tmp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = tmp;
+         }
 
-      int smallest = arr[left];
-      int median = arr[left];
-      int biggest = arr[left];
+         return;
+      }
+
+      int smallest;
+      int median;
+      int biggest;
 
       quickSortCounter += 1;
-
       if(arr[left] <= arr[middle]) {
          quickSortCounter += 1;
          if(arr[middle] <= arr[right]) {
@@ -131,20 +139,40 @@ public class Sorts1 {
             median = arr[middle];
             biggest = arr[right];
          }
-      }
-      else if(arr[left] >= arr[middle]) {
-         quickSortCounter += 1;
-         if(arr[left] <= arr[right]) {
-            smallest = arr[middle];
-            median = arr[left];
-            biggest = arr[right];
+         else {
+            quickSortCounter += 1;
+            if(arr[left] <= arr[right]) {
+               smallest = arr[left];
+               median = arr[right];
+               biggest = arr[middle];
+            }
+            else {
+               smallest = arr[right];
+               median = arr[left];
+               biggest = arr[middle];
+            }
          }
       }
       else {
-         quickSortCounter += 2;
-         smallest = arr[left] <= arr[right] ? arr[left] : arr[right];
-         median = arr[right];
-         biggest = smallest == arr[left] ? arr[right] : arr[left];
+         quickSortCounter += 1;
+         if(arr[middle] <= arr[right]) {
+            quickSortCounter += 1;
+            if(arr[left] <= arr[right]) {
+               smallest = arr[middle];
+               median = arr[left];
+               biggest = arr[right];
+            }
+            else {
+               smallest = arr[middle];
+               median = arr[right];
+               biggest = arr[left];
+            }
+         }
+         else {
+            smallest = arr[right];
+            median = arr[middle];
+            biggest = arr[left];
+         }
       }
 
       arr[left] = smallest;
@@ -157,9 +185,7 @@ public class Sorts1 {
       int indexR = right-1;
       int pivot = arr[right];
 
-
       while(indexL <= indexR) {
-
          while(indexL <= indexR) {
             quickSortCounter += 1;
             if(arr[indexL] < pivot) {
@@ -169,7 +195,6 @@ public class Sorts1 {
                break;
             }
          }
-
          while(indexL <= indexR) {
             quickSortCounter += 1;
             if(arr[indexR] > pivot) {
@@ -189,10 +214,10 @@ public class Sorts1 {
          }
       }
 
+      int tmp = arr[right];
       arr[right] = arr[indexL];
-      arr[indexL] = pivot;
+      arr[indexL] = tmp;
 
       return indexL;
    }
-
 }

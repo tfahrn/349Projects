@@ -1,35 +1,43 @@
-N=5000: T_ss=14, T_ms=2, T_qs=1
-N=5000: T_ss=14, T_ms=0, T_qs=0
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 1/19/2018
+ * Project 1
+ */
+
+N=5000: T_ss=15, T_ms=2, T_qs=2
+N=5000: T_ss=17, T_ms=0, T_qs=0
 N=5000: T_ss=5, T_ms=0, T_qs=0
-N=5000: T_ss=11, T_ms=0, T_qs=0
+N=5000: T_ss=16, T_ms=0, T_qs=0
 N=5000: T_ss=11, T_ms=0, T_qs=0
 
-N=10000: T_ss=44, T_ms=1, T_qs=0
+N=10000: T_ss=48, T_ms=1, T_qs=0
 N=10000: T_ss=46, T_ms=1, T_qs=0
-N=10000: T_ss=44, T_ms=1, T_qs=0
+N=10000: T_ss=48, T_ms=1, T_qs=0
 N=10000: T_ss=47, T_ms=1, T_qs=0
 N=10000: T_ss=15, T_ms=1, T_qs=0
 
-N=20000: T_ss=58, T_ms=3, T_qs=0
-N=20000: T_ss=63, T_ms=3, T_qs=0
 N=20000: T_ss=58, T_ms=3, T_qs=1
-N=20000: T_ss=61, T_ms=3, T_qs=1
-N=20000: T_ss=58, T_ms=3, T_qs=0
+N=20000: T_ss=59, T_ms=3, T_qs=1
+N=20000: T_ss=59, T_ms=3, T_qs=1
+N=20000: T_ss=58, T_ms=3, T_qs=1
+N=20000: T_ss=58, T_ms=3, T_qs=1
 
-N=40000: T_ss=236, T_ms=6, T_qs=2
-N=40000: T_ss=231, T_ms=6, T_qs=1
-N=40000: T_ss=238, T_ms=6, T_qs=2
-N=40000: T_ss=237, T_ms=6, T_qs=2
-N=40000: T_ss=272, T_ms=6, T_qs=2
+N=40000: T_ss=234, T_ms=6, T_qs=3
+N=40000: T_ss=238, T_ms=6, T_qs=3
+N=40000: T_ss=244, T_ms=7, T_qs=3
+N=40000: T_ss=236, T_ms=6, T_qs=3
+N=40000: T_ss=241, T_ms=6, T_qs=3
 
-N=80000: T_ss=1004, T_ms=13, T_qs=4
-N=80000: T_ss=992, T_ms=15, T_qs=4
-N=80000: T_ss=1016, T_ms=13, T_qs=4
-N=80000: T_ss=975, T_ms=16, T_qs=4
-N=80000: T_ss=983, T_ms=15, T_qs=4
+N=80000: T_ss=947, T_ms=13, T_qs=6
+N=80000: T_ss=957, T_ms=13, T_qs=7
+N=80000: T_ss=1040, T_ms=13, T_qs=6
+N=80000: T_ss=944, T_ms=13, T_qs=6
+N=80000: T_ss=960, T_ms=15, T_qs=6
 
-N=160000: T_ss=4006, T_ms=25, T_qs=9
-N=160000: T_ss=3861, T_ms=21, T_qs=9
-N=160000: T_ss=3907, T_ms=22, T_qs=9
-N=160000: T_ss=3916, T_ms=22, T_qs=8
-N=160000: T_ss=3778, T_ms=23, T_qs=8
+N=160000: T_ss=3976, T_ms=23, T_qs=15
+N=160000: T_ss=3855, T_ms=22, T_qs=15
+N=160000: T_ss=3958, T_ms=22, T_qs=14
+N=160000: T_ss=3916, T_ms=22, T_qs=14
+N=160000: T_ss=3873, T_ms=23, T_qs=15
+

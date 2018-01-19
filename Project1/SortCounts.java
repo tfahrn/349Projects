@@ -6,13 +6,16 @@
  */
 
 import java.util.Random;
+
 public class SortCounts{
    public static void main(String args[]){
       int[] listOne = new int[12800];
       int[] listTwo = new int[12800];
       int[] listThree = new int[12800];
+
       Random rnd = new Random();
-      for(int i = 100; i <= 12800 ; i *= 2){
+
+      for(int i = 100; i <= 12800; i *= 2){
 
          long selectCount = 0;
          long mergeCount = 0;
@@ -33,10 +36,4 @@ public class SortCounts{
          System.out.format("N=%d: C_ss=%d, C_ms=%d, C_qs=%d\n",i,(selectCount)/100, (mergeCount)/100, (quickCount)/100);
       }
    }
-
-   /*expected at N = 12800
-    * ss = 81913600
-    * ms = 158...
-    * qs = 202...
-    */
 }
