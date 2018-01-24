@@ -1,30 +1,43 @@
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 1/24/2018
+ * Project 2 - Part 1
+ */
+
 import java.util.*;
 import java.io.*;
-public class MatrixWork{
-   public static int[][] matrixProduct(int[][] A, int[][]B) throws IllegalArgumentException{
 
-      if(A[0].length != B.length)
+public class MatrixWork {
+
+   public static int[][] matrixProduct(int[][] A, int[][] B) throws IllegalArgumentException {
+      if(A[0].length != B.length) {
          throw new IllegalArgumentException();
+      }
+
       int[][] productMatrix = new int[A.length][B[0].length];
-      for(int i = 0; i < A.length; i++){
-         for(int j = 0; j < B[0].length ;j++){
+
+      for(int i = 0; i < A.length; i++) {
+         for(int j = 0; j < B[0].length ;j++) {
             int sum = 0;
-            for(int l = 0; l < B.length; l++){
+            for(int l = 0; l < B.length; l++) {
                sum += A[i][l] * B[l][j];
             }
             productMatrix[i][j] = sum;
-
          }
       }
+
       return productMatrix;
    }
 
    public static void main(String args[]) throws FileNotFoundException{
       System.out.println("Please provide inout file name: ");
+
       Scanner input = new Scanner(System.in);
       String fileName = input.nextLine();
       File file = new File(fileName);
       Scanner sc = new Scanner(file);
+
       int aRow = sc.nextInt();
       int aCol = sc.nextInt();
       int[][] A = new int[aRow][aCol];
@@ -33,6 +46,7 @@ public class MatrixWork{
             A[i][j] = sc.nextInt();
          }
       }
+
       int bRow = sc.nextInt();
       int bCol = sc.nextInt();
       int[][] B = new int[bRow][bCol];
@@ -41,6 +55,7 @@ public class MatrixWork{
             B[i][j] = sc.nextInt();
          }
       }
+
       try{
          int[][] productMatrix = matrixProduct(A,B);
          System.out.println("Product Matrix\n");
@@ -49,16 +64,12 @@ public class MatrixWork{
             for(int j = 0; j < productMatrix[0].length; j++){
                System.out.print(productMatrix[i][j] + " ");
             }
-      }
-      System.out.println();
-
-
+         }
+         
+         System.out.println();
       }
       catch (IllegalArgumentException e){
-         System.out.println("Incorrect file format\n");
+         System.out.println("Incompatible matrices\n");
       }
-
-
-
    }
 }
