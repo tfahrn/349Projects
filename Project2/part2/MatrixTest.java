@@ -8,6 +8,11 @@ public class MatrixTest {
 
 
       System.out.println("testDAC1: " + testDAC1());
+      System.out.println("testDAC2: " + testDAC2());
+      System.out.println("----testing dac3-----");
+      System.out.println("testDAC3: " + testDAC3());
+      System.out.println("----testing dac4-----");
+      System.out.println("testDAC4: " + testDAC4());
 
 
    }
@@ -45,12 +50,47 @@ public class MatrixTest {
       int[][] B = {{3,4},{1,2}};
       int[][] C = MatrixProduct.matrixProduct_DAC(A, B);
 
-      for(int row = 0; row < A.length; row++) {
-         for(int col = 0; col < A[0].length; col++) {
-            System.out.print(C[row][col] + " ");
-         }
-      }
+      printMatrix(C);
 
       return true;
+   }
+
+   private static boolean testDAC2() {
+      int[][] A = {{1,2},{3,4}};
+      int[][] B = {{1,1},{1,1}};
+      int[][] C = MatrixProduct.matrixProduct_DAC(A, B);
+
+      printMatrix(C);
+
+      return true;
+   }
+
+   private static boolean testDAC3() {
+      int[][] A = {{1,2,3,4},{1,2,3,4},{1,2,3,4},{1,2,3,4}};
+      int[][] B = {{4,3,2,1},{4,3,2,1},{4,3,2,1},{4,3,2,1}};
+      int[][] C = MatrixProduct.matrixProduct_DAC(A, B);
+
+      printMatrix(C);
+
+      return true;
+   }
+
+   private static boolean testDAC4() {
+      int[][] A = {{3,4,-2,5},{2,-5,-1,0},{0,2,4,3},{3,-2,1,9}};
+      int[][] B = {{4,3,2,1},{4,3,2,1},{4,3,2,1},{4,3,2,1}};
+      int[][] C = MatrixProduct.matrixProduct_DAC(A, B);
+
+      printMatrix(C);
+
+      return true;
+   }
+
+   private static void printMatrix(int[][] matrix) {
+      for(int row = 0; row < matrix.length; row++) {
+         System.out.println();
+         for(int col = 0; col < matrix[0].length; col++) {
+            System.out.print(matrix[row][col] + " ");
+         }
+      }
    }
 }

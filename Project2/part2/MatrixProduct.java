@@ -27,28 +27,60 @@ public class MatrixProduct {
 
          int[][] C22 = addMatrices(matrixProduct_DAC(A, startRowA+n/2, startColA+0, B, startRowB+0, startColB+n/2, n/2), matrixProduct_DAC(A, startRowA+n/2, startColA+n/2, B, startRowB+n/2, startColB+n/2, n/2));
 
-         for(int i = startRowA; i < startRowA + n/2; i++){
-           for(int k = startColA; k < startColA + n/2; k++){
-               C[i][k] = C11[i][k];
-           }
-         }    
+         int row = 0;
+         int col = 0;
 
-         for(int i = startRowA; i < startRowA + n/2; i++){
-           for(int k = startColA + n/2; k < A.length; k++){
-               System.out.println("n: " + n);
-               C[i][k] = C12[i][k];
-          }
-         }    
+         for(int subrow = 0; subrow < C11.length; subrow++) {
+            for(int subcol = 0; subcol < C11[0].length; subcol++) {
+               C[row][col] = C11[subrow][subcol];
 
-         for(int i = startRowA + n/2; i < A.length; i++){
-           for(int k = startColA; k < startColA + n/2; k++){
-               C[i][k] = C21[i][k];
-           }
-         }    
-         for(int i = startRowA + n/2; i < A.length; i++){
-           for(int k = startColA + n/2; k < A.length; k++){
-               C[i][k] = C22[i][k];
-           }
+               col++;
+            }
+
+            col = 0;
+            row++;
+         }
+
+         row = 0;
+         col = n/2;
+
+         for(int subrow = 0; subrow < C12.length; subrow++) {
+            for(int subcol = 0; subcol < C12[0].length; subcol++) {
+               C[row][col] = C12[subrow][subcol];
+
+               col++;
+            }
+
+            col = n/2;
+            row++;
+         }
+
+         row = n/2;
+         col = 0;
+
+         for(int subrow = 0; subrow < C21.length; subrow++) {
+            for(int subcol = 0; subcol < C21[0].length; subcol++) {
+               C[row][col] = C21[subrow][subcol];
+
+               col++;
+            }
+
+            col = 0;
+            row++;
+         }
+
+         row = n/2;
+         col = n/2;
+
+         for(int subrow = 0; subrow < C22.length; subrow++) {
+            for(int subcol = 0; subcol < C22[0].length; subcol++) {
+               C[row][col] = C22[subrow][subcol];
+
+               col++;
+            }
+
+            col = n/2;
+            row++;
          }
       }
 
@@ -63,6 +95,15 @@ public class MatrixProduct {
       }
 
       return A;
+   }
+
+   private static void printMatrix(int[][] matrix) {
+      for(int row = 0; row < matrix.length; row++) {
+         System.out.println();
+         for(int col = 0; col < matrix[0].length; col++) {
+            System.out.print(matrix[row][col] + " ");
+         }
+      }
    }
    
    public static int[][] matrixProduct_Strassen(int[][] A, int[][] B) throws IllegalArgumentException {
