@@ -143,10 +143,11 @@ public class MatrixProduct {
          int[][] P6 = matrixProduct_Strassen(S7,0,0,S8,0,0,n/2);
          int[][] P7 = matrixProduct_Strassen(S9,0,0,S10,0,0,n/2);
 
-         int[][] C11 = subMatrices( addMatrices(P5,0,0,P4,0,0,P5.length), 0, 0, addMatrices(P2,0,0,P6,0,0,P2.length), 0, 0, n/2);
+         int[][] C11 = addMatrices(subMatrices(addMatrices(P5, 0, 0, P4, 0, 0, n/2), 0, 0, P2, 0, 0, n/2), 0, 0, P6, 0, 0, n/2);
+         //int[][] C11 = subMatrices( addMatrices(P5,0,0,P4,0,0,P5.length), 0, 0, addMatrices(P2,0,0,P6,0,0,P2.length), 0, 0, n/2);
          int[][] C12 = addMatrices(P1,0,0,P2,0,0,P2.length);
          int[][] C21 = addMatrices(P3,0,0,P4,0,0,P3.length);
-         int[][] C22 = subMatrices( addMatrices(P5,0,0,P1,0,0,P5.length), 0, 0, subMatrices(P3,0,0,P7,0,0,P3.length), 0, 0, n/2);
+         int[][] C22 = subMatrices( addMatrices(P5,0,0,P1,0,0,P5.length), 0, 0, addMatrices(P3,0,0,P7,0,0,P3.length), 0, 0, n/2);
 
          int row = 0;
          int col = 0;
