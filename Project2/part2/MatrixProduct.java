@@ -131,7 +131,7 @@ public class MatrixProduct {
          int[][] S5 = addMatrices(A, 0 + startRowA,0 + startColA,A,n/2 + startRowA,n/2 + startColA,n/2);
          int[][] S6 = addMatrices(B,0 + startRowB,0 + startColB,B,n/2 + startRowB,n/2 + startColB,n/2);
          int[][] S7 = subMatrices(A,0 + startRowA,n/2 + startColA,A,n/2 + startRowA,n/2 + startColA,n/2);
-         int[][] S8 = addMatrices(B,n/2 + startRowB,0 + startColA,B,n/2 + startRowB,n/2 + startColB,n/2);
+         int[][] S8 = addMatrices(B,n/2 + startRowB,0 + startColB,B,n/2 + startRowB,n/2 + startColB,n/2);
          int[][] S9 = subMatrices(A,0 + startRowA,0 + startColA,A,n/2 + startRowA,0 + startColA,n/2);
          int[][] S10 = addMatrices(B,0 + startRowB, 0 + startColB,B,0 + startRowB,n/2 + startColB,n/2);
 
@@ -144,7 +144,6 @@ public class MatrixProduct {
          int[][] P7 = matrixProduct_Strassen(S9,0,0,S10,0,0,n/2);
 
          int[][] C11 = addMatrices(subMatrices(addMatrices(P5, 0, 0, P4, 0, 0, n/2), 0, 0, P2, 0, 0, n/2), 0, 0, P6, 0, 0, n/2);
-         //int[][] C11 = subMatrices( addMatrices(P5,0,0,P4,0,0,P5.length), 0, 0, addMatrices(P2,0,0,P6,0,0,P2.length), 0, 0, n/2);
          int[][] C12 = addMatrices(P1,0,0,P2,0,0,P2.length);
          int[][] C21 = addMatrices(P3,0,0,P4,0,0,P3.length);
          int[][] C22 = subMatrices( addMatrices(P5,0,0,P1,0,0,P5.length), 0, 0, addMatrices(P3,0,0,P7,0,0,P3.length), 0, 0, n/2);
@@ -216,9 +215,11 @@ public class MatrixProduct {
       int cRow = 0;
       int cCol = 0;
 
+      //System.out.println("----------");
       for(int aRow = startRowA; aRow < n + startRowA; aRow++){
          for(int aCol = startColA; aCol < n + startColA; aCol++){
 
+            //System.out.println("aRow: " + aRow + " aCol: " + aCol + " bRow: " + bRow + " bCol: " + bCol + " cRow: " + cRow + " cCol: " + cCol + " n: " + n);
             C[cRow][cCol] = A[aRow][aCol] + B[bRow][bCol];
             bCol++;
             cCol++;
@@ -254,8 +255,6 @@ public class MatrixProduct {
 
       return C;
    }
-
-
 
    public static boolean isValidMultiplication(int[][] A, int[][] B) {
 
