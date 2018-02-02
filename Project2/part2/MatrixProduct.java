@@ -3,23 +3,23 @@ import java.lang.*;
 public class MatrixProduct {
 
    public static int[][] matrixProduct_DAC(int[][] A, int[][] B) throws IllegalArgumentException {
-   
+
       if(!isValidMultiplication(A, B)) {
          throw new IllegalArgumentException("Invalid matrices");
       }
-   
+
       return matrixProduct_DAC(A,0,0,B,0,0,A.length);
    }
 
    private static int[][] matrixProduct_DAC(int[][] A, int startRowA, int startColA, int[][] B, int startRowB, int startColB, int n) {
 
       int[][] C = new int[n][n];
-      
+
       if(n == 1) {
          C[0][0] = A[startRowA][startColA] * B[startRowB][startColB];
       }
       else {
-         int[][] C11 = addMatrices(matrixProduct_DAC(A, startRowA+0, startColA+0, B, startRowB+0, startColB+0, n/2), matrixProduct_DAC(A, startRowA+0, startColA+n/2, B, startRowB+n/2, startColB+0, n/2)); 
+         int[][] C11 = addMatrices(matrixProduct_DAC(A, startRowA+0, startColA+0, B, startRowB+0, startColB+0, n/2), matrixProduct_DAC(A, startRowA+0, startColA+n/2, B, startRowB+n/2, startColB+0, n/2));
 
          int[][] C12 = addMatrices(matrixProduct_DAC(A, startRowA+0, startColA+0, B, startRowB+0, startColB+n/2, n/2), matrixProduct_DAC(A, startRowA+0, startColA+n/2, B, startRowB+n/2, startColB+n/2, n/2));
 
@@ -84,7 +84,7 @@ public class MatrixProduct {
          }
       }
 
-      return C;    
+      return C;
    }
 
    private static int[][] addMatrices(int[][] A, int[][] B) {
@@ -105,35 +105,112 @@ public class MatrixProduct {
          }
       }
    }
-   
+
    public static int[][] matrixProduct_Strassen(int[][] A, int[][] B) throws IllegalArgumentException {
-   
+
       if(!isValidMultiplication(A, B)) {
          throw new IllegalArgumentException("Invalid matrices");
       }
-   
-   
-      return null;
+
+      return matrixProduct_Strassen(A,0,0,B,0,0,A.length);
+
    }
-   
+   public static int[][] matrixProduct_Strassen(int[][] A, int startRowA, int startColA, int[][] B, int startRowB, int startColB, int n){
+
+      int[][] S1 = subMatrices(B,0 + startRowB,n/2 + startColB,B,n/2 + startRowB,n/2 + startColB,n/2);
+      int[][] S2 = addMatrices(A,0 + startRowA,0 + startColA,A,0 + startRowA,n/2 + startColA,n/2);
+      int[][] S3 = addMatrices(A,n/2 + startRowA,0 + startColA,A,n/2 + startRowA,n/2 + startColA,n/2);
+      int[][] S4 = subMatrices(B,n/2 + startRowB,0 + startColB,B,0 + startRowB,0 + startColB,n/2);
+      int[][] S5 = addMatrices(A, 0 + startRowA,0 + startColA,A,n/2 + startRowA,n/2 + startColA,n/2);
+      int[][] S6 = addMatrices(B,0 + startRowB,0 + startColB,B,n/2 + startRowB,n/2 + startColB,n/2);
+      int[][] S7 = subMatrices(A,0 + startRowA,n/2 + startColA,A,n/2 + startRowA,n/2 + startColA,n/2);
+      int[][] S8 = addMatrices(B,n/2 + startRowB,0 + startColA,B,n/2 + startRowB,n/2 + startColB,n/2);
+      int[][] S9 = subMatrices(A,0 + startRowA,0 + startColA,A,n/2 + startRowA,0 + startColA,n/2);
+      int[][] S10 = addMatrices(B,0 + startRowB, 0 + startColB,B,0 + startRowB,n/2 + startColB,n/2);
+
+      int[][] P1 = matrixProduct_Strassen(A,0 + startRowA,0 + startColA,S1,0,0,n/2);
+      int[][] P2 = matrixProduct_Strassen(S2,0,0,B,n/2 + startRowB, n/2 + startColB, n/2);
+      int[][] P3 = matrixProduct_Strassen(S3,0,0,B,0 + startRowB,0 + startColB,n/2);
+      int[][] P4 = matrixProduct_Strassen(A,n/2 + startRowA, n/2 + startColA,S4,0,0,n/2);
+      int[][] P5 = matrixProduct_Strassen(S5,0,0,S6,0,0,n/2);
+      int[][] P6 = matrixProduct_Strassen(S7,0,0,S8,0,0,n/2);
+      int[][] P7 = matrixProduct_Strassen(S9,0,0,S10,0,0,n/2);
+
+      int[][] C11 = subMatrices( addMatrices(P5,0,0,P4,0,0,P5.length) , addMatrices(P2,0,0,P6,0,0,P2.length));
+      int[][] C12 = addMatrices(P1,0,0,P2,0,0,P2.length);
+      int[][] C21 = addMatrices(P3,0,0,P4,0,0,P3.length);
+      int[][] C22 = subMatrices( addMatrices(P5,0,0,P1,0,0,P5.length) , subMatrices(P3,0,0,P7,0,0,P3.length));
+
+   }
+
+   private static int[][] addMatrices(int[][] A, int startRowA, int startColA, int[][] B, int startRowB, int startColB,int n){
+      int[][] C = new int[n][n];
+      int bRow = startRowB;
+      int bCol = startColB;
+      int cRow = 0;
+      int cCol = 0;
+
+      for(int aRow = startRowA; row < n + startRowA; row++){
+         for(int aCol = startColA; col < n + startColA;col++){
+
+            C[cRow][cCol] = A[aRow][aCol] + B[bRow][bCol];
+            bCol++;
+            cCol++
+         }
+         bCol = 0;
+         cCol = 0;
+         cRow++;
+         bRow++;
+      }
+      return C;
+
+   }
+
+   private static int[][] subMatrices(int[][] A, int startRowA, int startColA, int[][] B, int startRowB, int startColB){
+      int[][] C = new int[n][n];
+      int bRow = startRowB;
+      int bCol = startColB;
+      int cRow = 0;
+      int cCol = 0;
+
+
+      for(int aRow = startRowA; row < n + startRowA; row++){
+         for(int aCol = startColA; col < n +startColA;col++){
+
+            C[cRow][cCol] = A[aRow][aCol] - B[bRow][bCol];
+            bCol++;
+            cCol++;
+         }
+         bCol = 0;
+         cCol = 0;
+         cRow++;
+         bRow++;
+      }
+      return C;
+
+
+   }
+
+
+
    public static boolean isValidMultiplication(int[][] A, int[][] B) {
-      
+
       //check both are square matrices
       //TODO: check assumptions on input
       if(A.length != A[0].length || B.length != B[0].length) {
          return false;
       }
-   
+
       //check same size
       if(A.length != B.length) {
          return false;
       }
-   
+
       //check size is power of 2
       if((A.length & (A.length - 1)) != 0) {
          return false;
       }
-   
+
       return true;
    }
 }
