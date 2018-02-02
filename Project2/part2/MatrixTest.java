@@ -8,11 +8,14 @@ public class MatrixTest {
 
 
       System.out.println("testDAC1: " + testDAC1());
+      System.out.println("testStrassen1: " + testStrassen1());
+      /*
       System.out.println("testDAC2: " + testDAC2());
       System.out.println("----testing dac3-----");
       System.out.println("testDAC3: " + testDAC3());
       System.out.println("----testing dac4-----");
       System.out.println("testDAC4: " + testDAC4());
+      */
 
 
    }
@@ -47,7 +50,7 @@ public class MatrixTest {
 
    private static boolean testDAC1() {
       int[][] A = {{1,2},{3,4}};
-      int[][] B = {{3,4},{1,2}};
+      int[][] B = {{1,2},{3,4}};
       int[][] C = MatrixProduct.matrixProduct_DAC(A, B);
 
       printMatrix(C);
@@ -79,6 +82,16 @@ public class MatrixTest {
       int[][] A = {{3,4,-2,5},{2,-5,-1,0},{0,2,4,3},{3,-2,1,9}};
       int[][] B = {{4,3,2,1},{4,3,2,1},{4,3,2,1},{4,3,2,1}};
       int[][] C = MatrixProduct.matrixProduct_DAC(A, B);
+
+      printMatrix(C);
+
+      return true;
+   }
+   
+   private static boolean testStrassen1() {
+      int[][] A = {{1,2},{3,4}};
+      int[][] B = {{1,2},{3,4}};
+      int[][] C = MatrixProduct.matrixProduct_Strassen(A, B);
 
       printMatrix(C);
 
