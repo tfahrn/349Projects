@@ -1,3 +1,10 @@
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 2/2/2018
+ * Project 2 - Part 2
+ */
+
 import java.lang.*;
 
 public class MatrixProduct {
@@ -97,15 +104,6 @@ public class MatrixProduct {
       return A;
    }
 
-   private static void printMatrix(int[][] matrix) {
-      for(int row = 0; row < matrix.length; row++) {
-         System.out.println();
-         for(int col = 0; col < matrix[0].length; col++) {
-            System.out.print(matrix[row][col] + " ");
-         }
-      }
-   }
-
    public static int[][] matrixProduct_Strassen(int[][] A, int[][] B) throws IllegalArgumentException {
 
       if(!isValidMultiplication(A, B)) {
@@ -144,9 +142,9 @@ public class MatrixProduct {
          int[][] P7 = matrixProduct_Strassen(S9,0,0,S10,0,0,n/2);
 
          int[][] C11 = addMatrices(subMatrices(addMatrices(P5, 0, 0, P4, 0, 0, n/2), 0, 0, P2, 0, 0, n/2), 0, 0, P6, 0, 0, n/2);
-         int[][] C12 = addMatrices(P1,0,0,P2,0,0,P2.length);
-         int[][] C21 = addMatrices(P3,0,0,P4,0,0,P3.length);
-         int[][] C22 = subMatrices( addMatrices(P5,0,0,P1,0,0,P5.length), 0, 0, addMatrices(P3,0,0,P7,0,0,P3.length), 0, 0, n/2);
+         int[][] C12 = addMatrices(P1, 0, 0, P2, 0, 0, n/2);
+         int[][] C21 = addMatrices(P3, 0, 0, P4, 0, 0, n/2);
+         int[][] C22 = subMatrices(addMatrices(P5, 0, 0, P1, 0, 0, n/2), 0, 0, addMatrices(P3, 0, 0, P7, 0, 0, n/2), 0, 0, n/2);
 
          int row = 0;
          int col = 0;
@@ -224,8 +222,8 @@ public class MatrixProduct {
             bCol++;
             cCol++;
          }
-         bCol = 0;
-         cCol = 0;
+         bCol = startColB;
+         cCol = 0; 
          bRow++;
          cRow++;
       }
@@ -247,7 +245,7 @@ public class MatrixProduct {
             bCol++;
             cCol++;
          }
-         bCol = 0;
+         bCol = startColB;
          cCol = 0;
          bRow++;
          cRow++;
@@ -256,10 +254,9 @@ public class MatrixProduct {
       return C;
    }
 
-   public static boolean isValidMultiplication(int[][] A, int[][] B) {
+   private static boolean isValidMultiplication(int[][] A, int[][] B) {
 
       //check both are square matrices
-      //TODO: check assumptions on input
       if(A.length != A[0].length || B.length != B[0].length) {
          return false;
       }
