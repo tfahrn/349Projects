@@ -1,3 +1,10 @@
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 2/16/2018
+ * Project 3 
+ */
+
 import java.util.*;
 import java.io.*;
 
@@ -35,14 +42,6 @@ public class FactoryProblem {
          t2[i] = sc.nextInt();
       }
 
-      /*
-      System.out.println("n: " + n + " e1: " + e1 + " e2: " + e2 + " x1: " + x1 + " x2: " + x2);
-      System.out.println("A1: " + Arrays.toString(a1));
-      System.out.println("A2: " + Arrays.toString(a2));
-      System.out.println("t1: " + Arrays.toString(t1));
-      System.out.println("t2: " + Arrays.toString(t2));
-      */
-
       lineScheduling(n, e1, e2, x1, x2, a1, a2, t1, t2);
    }
 
@@ -69,12 +68,6 @@ public class FactoryProblem {
 
       int minCost = Math.min(f1[n-1]+x1,f2[n-1]+x2);
       int lStar = (f1[n-1]+x1 < f2[n-1]+x2) ? 1 : 2;
-      /*
-      System.out.println("min cost: " + minCost);
-      System.out.println("l1: " + Arrays.toString(l1));
-      System.out.println("l2: " + Arrays.toString(l2));
-      System.out.println("lstar: " + lStar);
-      */
 
       int[] revPath = new int[n];
       revPath[0] = lStar;
@@ -85,21 +78,10 @@ public class FactoryProblem {
          last = line[line.length-1];
       } 
 
-      //System.out.println("reverse path: " + Arrays.toString(revPath));
-
       System.out.println("Fastest time is: " + minCost + "\n");
       System.out.println("The optimal route is:");
       for(int i = n-1; i >= 0 ; i--) {
          System.out.println("station " + (n-i) + ", line " + revPath[i]);
       }
    }
-
-
-
-
-
-
-
-
-
 }

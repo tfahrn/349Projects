@@ -1,3 +1,10 @@
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 2/16/2018
+ * Project 3 
+ */
+
 import java.util.*;
 import java.io.*;
 import java.lang.*;
@@ -23,14 +30,6 @@ public class GameProblem {
             A[i][j] = sc.nextInt();
          }
       }
-
-      /*
-      System.out.println("n: " + n);
-      System.out.println("m: " + m);
-      for(int row = 0; row < n; row++) {
-         System.out.println(Arrays.toString(A[row]));
-      }
-      */
 
       game(n, m, A);
    }
