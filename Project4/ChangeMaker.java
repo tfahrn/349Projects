@@ -11,35 +11,54 @@ import java.io.*;
 public class ChangeMaker {
 
    public static void main(String[] args){
-
       System.out.println("Enter the number of coin-denominations and the set of coin values: ");
-
       Scanner input = new Scanner(System.in);
       int k = input.nextInt();
       int coins[] = new int[k];
       for(int i = 0; i < k; i++){
          coins[i] = input.nextInt();
       }
-
       System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
       int n = input.nextInt();
       while(n != 0){
-         //change_DP(n,coins);
-         printArr(coins,change_greedy(n,coins));
+         System.out.println("DP algorithm results");
+         printArr(n,coins,change_DP(n,coins));
+         System.out.println("Greedy algorithm results");
+         printArr(n,coins,change_greedy(n,coins));
          System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
          n = input.nextInt();
 
       }
-
-
       System.out.println("Thanks for playing. Good Bye.");
-
-
    }
    public static int[] change_DP(int n, int[] d){
-      return d;
+      int[] c = new int[n+1];
+      int[] a = new int[n+1];
+      int[] resultArray = new int[d.length];
+      c[0] = 0;
+      a[0] = -1;
 
+      for(int j = 1; j < c.length; j++){
+         int min = Integer.MAX_VALUE;
+         int minIndex = -1;
+         for(int i = 0; i < d.length; i++){
+            if(j - d[i] >= 0){
+               if(c[j - d[i]] < min){
+                  min = c[j - d[i]];
+                  minIndex = i;
+               }
 
+            }
+         }
+         a[j] = minIndex;
+         c[j] = min == Integer.MAX_VALUE ? min : min+1;
+      }
+
+      for(int i = 0; i < a.length; i++){
+         if(a[i] != -1)
+            resultArray[a[i]]++;
+      }
+      return resultArray;
    }
    public static int[] change_greedy(int n, int[] d){
       int arr[] = new int[d.length];
@@ -54,7 +73,8 @@ public class ChangeMaker {
       }
       return arr;
    }
-   public static void printArr(int[] d, int[] freq){
+   public static void printArr(int n,int[] d, int[] freq){
+      System.out.println("Amount: " + n);
       System.out.println("Optimal distribution: ");
       int count = 0;
       for(int i = 0; i < d.length-1; i++){
