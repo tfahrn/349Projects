@@ -35,35 +35,36 @@ public class ChangeMaker {
       System.out.println("Thanks for playing. Good Bye.");
    }
 
-   public static int[] change_DP(int n, int[] d){
-      int[] c = new int[n+1];
-      int[] a = new int[n+1];
-      int[] resultArray = new int[d.length];
+   public static int[] change_DP(int n, int[] d) {
+      int[] c = new int[n+1]; //number of coins chosen at all targets from 0 to n
+      int[] a = new int[n+1]; //coin (index of d) chosen for target (a index == c index)
+      int[] chosenCoins = new int[d.length]; //coins (indices of d) chosen for target at n
+
       c[0] = 0;
       a[0] = -1;
 
-      for(int j = 1; j < c.length; j++){
-         int min = Integer.MAX_VALUE;
-         int minIndex = -1;
-         for(int i = 0; i < d.length; i++){
-            if(j - d[i] >= 0){
-               if(c[j - d[i]] < min){
-                  min = c[j - d[i]];
-                  minIndex = i;
-               }
+      for(int target = 1; target <= n; target++) {
+         int minNumCoins = Integer.MAX_VALUE;
+         int chosenCoinIndex = -1;
 
+         for(int coinIndex = 0; coinIndex < d.length; coinIndex++) {
+            if(target - d[coinIndex] >= 0 && (1 + c[target - d[coinIndex]] < minNumCoins)) {
+               minNumCoins = 1 + c[target - d[coinIndex]];
+               chosenCoinIndex = coinIndex;
             }
          }
-         a[j] = minIndex;
-         c[j] = min == Integer.MAX_VALUE ? min : min+1;
+
+         c[target] = minNumCoins;
+         a[target] = chosenCoinIndex;
       }
 
-      for(int i = 0; i < a.length; i++){
-         if(a[i] != -1)
-            resultArray[a[i]]++;
+      while(n > 0) {
+         int chosenCoinIndex = a[n];
+         chosenCoins[chosenCoinIndex] += 1;
+         n -= d[chosenCoinIndex];
       }
 
-      return resultArray;
+      return chosenCoins;
    }
 
    public static int[] change_greedy(int n, int[] d){
