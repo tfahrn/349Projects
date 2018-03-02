@@ -1,4 +1,5 @@
 public class Tester{
+
    public static void main(String args[]){
       int[] US = {100, 50, 25, 10, 5, 1 };
       int[] soviet = {100, 50, 20, 15, 10, 5, 3, 2, 1};
@@ -17,6 +18,7 @@ public class Tester{
       }
 
    }
+
    public static boolean cointCounter(int[] freqA, int[] freqB){
       int countA, countB;
       countA = countB = 0;
@@ -24,7 +26,7 @@ public class Tester{
          countA += freqA[i];
          countB += freqB[i];
       }
+      
       return countA == countB;
-
    }
 }

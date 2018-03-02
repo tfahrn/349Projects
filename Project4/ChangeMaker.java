@@ -1,7 +1,7 @@
 /*
  * Ivonne Guzman and Thomas Fahrner
  * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
- * ??/??/2018
+ * 3/2/2018
  * Project 4
  */
 
@@ -11,6 +11,7 @@ import java.io.*;
 public class ChangeMaker {
 
    public static void main(String[] args){
+
       System.out.println("Enter the number of coin-denominations and the set of coin values: ");
       Scanner input = new Scanner(System.in);
       int k = input.nextInt();
@@ -18,8 +19,10 @@ public class ChangeMaker {
       for(int i = 0; i < k; i++){
          coins[i] = input.nextInt();
       }
+
       System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
       int n = input.nextInt();
+
       while(n != 0){
          System.out.println("DP algorithm results");
          printArr(n,coins,change_DP(n,coins));
@@ -27,10 +30,11 @@ public class ChangeMaker {
          printArr(n,coins,change_greedy(n,coins));
          System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
          n = input.nextInt();
-
       }
+
       System.out.println("Thanks for playing. Good Bye.");
    }
+
    public static int[] change_DP(int n, int[] d){
       int[] c = new int[n+1];
       int[] a = new int[n+1];
@@ -58,8 +62,10 @@ public class ChangeMaker {
          if(a[i] != -1)
             resultArray[a[i]]++;
       }
+
       return resultArray;
    }
+
    public static int[] change_greedy(int n, int[] d){
       int arr[] = new int[d.length];
       int i = 0;
@@ -71,8 +77,10 @@ public class ChangeMaker {
          else
             i++;
       }
+
       return arr;
    }
+
    public static void printArr(int n,int[] d, int[] freq){
       System.out.println("Amount: " + n);
       System.out.println("Optimal distribution: ");
@@ -83,11 +91,10 @@ public class ChangeMaker {
             count += freq[i];
 
       }
+
       System.out.print(freq[d.length-1] + "*" + d[d.length-1] + "c\n");
       if(freq[d.length-1] > 0)
          count += freq[d.length-1];
       System.out.println("Optimal coin count: " + count);
    }
 }
-
-
