@@ -99,7 +99,7 @@ public class ChangeMaker {
 
    private static void printArr(int n,int[] d, int[] freq){
       System.out.println("Amount: " + n);
-      System.out.println("Optimal distribution: ");
+      System.out.print("Optimal distribution: ");
       int count = 0;
       for(int i = 0; i < d.length-1; i++){
          if(freq[i] > 0) {

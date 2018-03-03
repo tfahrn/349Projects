@@ -1,3 +1,10 @@
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 3/2/2018
+ * Project 4
+ */
+
 public class Tester{
 
    public static void main(String args[]){
