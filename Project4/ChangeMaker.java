@@ -20,14 +20,29 @@ public class ChangeMaker {
          coins[i] = input.nextInt();
       }
 
+      System.out.println();
+
       System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
       int n = input.nextInt();
+      System.out.println();
+
+      while(n != 0 && n < 0) {
+         System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
+         n = input.nextInt();
+         System.out.println();
+      }
 
       while(n != 0){
          System.out.println("DP algorithm results");
          printArr(n,coins,change_DP(n,coins));
+
+         System.out.println();
+
          System.out.println("Greedy algorithm results");
          printArr(n,coins,change_greedy(n,coins));
+         
+         System.out.println();
+
          System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
          n = input.nextInt();
       }
@@ -82,18 +97,22 @@ public class ChangeMaker {
       return arr;
    }
 
-   public static void printArr(int n,int[] d, int[] freq){
+   private static void printArr(int n,int[] d, int[] freq){
       System.out.println("Amount: " + n);
       System.out.println("Optimal distribution: ");
       int count = 0;
       for(int i = 0; i < d.length-1; i++){
-         System.out.print(freq[i] + "*" + d[i] + "c+ ");
-         if(freq[i] > 0)
+         if(freq[i] > 0) {
+            System.out.print(freq[i] + "*" + d[i] + "c + ");
             count += freq[i];
+         }
 
       }
 
-      System.out.print(freq[d.length-1] + "*" + d[d.length-1] + "c\n");
+      if(freq[d.length-1] > 0) {
+         System.out.print(freq[d.length-1] + "*" + d[d.length-1] + "c\n");
+      }
+
       if(freq[d.length-1] > 0)
          count += freq[d.length-1];
       System.out.println("Optimal coin count: " + count);

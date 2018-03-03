@@ -17,6 +17,12 @@ public class Tester{
          someSetMatches += cointCounter(ChangeMaker.change_DP(i,someSet), ChangeMaker.change_greedy(i,someSet)) ? 1 : 0;
       }
 
+      System.out.println("Testing change_DP and change_greedy algorithms");
+      System.out.println("Testing set1: " + USMatches + " matches in 200 tests"); 
+      System.out.println("Testing set2: " + sovietMatches + " matches in 200 tests"); 
+      System.out.println("Testing set3: " + powMatches + " matches in 200 tests"); 
+      System.out.println("Testing set4: " + noNickelMatches + " matches in 200 tests"); 
+      System.out.println("Testing set5: " + someSetMatches + " matches in 200 tests"); 
    }
 
    public static boolean cointCounter(int[] freqA, int[] freqB){
