@@ -32,7 +32,7 @@ public class Tester{
       System.out.println("Testing set5: " + someSetMatches + " matches in 200 tests"); 
    }
 
-   public static boolean cointCounter(int[] freqA, int[] freqB){
+   private static boolean cointCounter(int[] freqA, int[] freqB){
       int countA, countB;
       countA = countB = 0;
       for(int i = 0; i < freqA.length; i++){
