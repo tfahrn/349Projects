@@ -17,8 +17,9 @@ public class DiGraph {
          graph[fromIndex] = new LinkedList<Integer>();
       }
 
-      if(!pathExists(fromIndex, toIndex)) {
+      if(!pathExists(fromIndex, toIndex) && !(graph[fromIndex].contains(toIndex))) {
          graph[fromIndex].add(toIndex);
+         System.out.println("(" + (fromIndex+1) + "," + (toIndex+1) + ") edge is now added to the graph");
       }
    }
 
@@ -77,5 +78,54 @@ public class DiGraph {
       }
    }
 
+   private int[] indegrees() {
+      int[] indegrees = new int[graph.length];
 
+      for(LinkedList<Integer> fromVertex : graph) {
+         if(fromVertex != null && fromVertex.size() > 0) {
+            for(int toIndex : fromVertex) {
+               indegrees[toIndex] += 1;
+            }
+         }
+      }
+
+      return indegrees;
+   }
+
+   public int[] topSort() {
+      int[] indegrees = indegrees();
+      int[] topSort = new int[graph.length];
+
+      LinkedList<Integer> waiting = new LinkedList<Integer>();
+
+      for(int toIndex = 0; toIndex < indegrees.length; toIndex++) {
+         if(indegrees[toIndex] == 0) {
+            waiting.add(toIndex);
+         }
+      }
+
+      int topSortIndex = 0;
+
+      while(waiting.peek() != null) {
+         int toIndex = waiting.remove();
+         topSort[topSortIndex] = toIndex+1;
+         topSortIndex += 1;
+
+         if(graph[toIndex] != null && graph[toIndex].size() > 0) {
+            for(int totoIndex : graph[toIndex]) {
+               indegrees[totoIndex] -= 1;
+               if(indegrees[totoIndex] == 0) {
+                  waiting.add(totoIndex);
+               }
+            }
+         }
+      }
+
+      //check for cycle
+      if(topSortIndex != graph.length) {
+         throw new IllegalArgumentException();
+      }
+
+      return topSort;
+   }
 }
