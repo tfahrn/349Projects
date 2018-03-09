@@ -23,7 +23,7 @@ public class DiGraph {
    }
 
    private boolean pathExists(int fromIndex, int toIndex) {
-      if(graph[fromIndex] == null) {
+      if(graph[fromIndex] == null || graph[fromIndex].size() > 0) {
          return false;
       }
 
@@ -48,7 +48,7 @@ public class DiGraph {
       int count = 0;
 
       for(int fromIndex = 0; fromIndex < graph.length; fromIndex++) {
-         if(graph[fromIndex] != null) {
+         if(graph[fromIndex] != null && graph[fromIndex].size() > 0) {
             for(int toIndex : graph[fromIndex]) {
                count += 1;
             }
@@ -66,10 +66,14 @@ public class DiGraph {
       for(int fromIndex = 0; fromIndex < graph.length; fromIndex++) {
          System.out.print((fromIndex+1) + " is connected to: ");
 
-         for(int i = 0; i < graph[fromIndex].size()-1; i++) {
-            System.out.print((graph[fromIndex].get(i)+1) + ", ");
+         if(graph[fromIndex] != null && graph[fromIndex].size() > 0) {
+            for(int i = 0; i < graph[fromIndex].size()-1; i++) {
+               System.out.print((graph[fromIndex].get(i)+1) + ", ");
+            }
+            System.out.print(graph[fromIndex].get(graph[fromIndex].size()-1) + 1);
          }
-         System.out.print(graph[fromIndex].get(graph[fromIndex].size()-1) + 1);
+
+         System.out.println();
       }
    }
 

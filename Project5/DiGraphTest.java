@@ -20,8 +20,8 @@ public class DiGraphTest {
 
          if(nextInput == 'a' || nextInput == 'd') {
             System.out.println("Enter the from index: ");
-            System.out.println("Enter the to index: ");
             int fromIndex = input.nextInt();
+            System.out.println("Enter the to index: ");
             int toIndex = input.nextInt();
 
             if(nextInput == 'a') {
