@@ -1,3 +1,10 @@
+/*
+ * Ivonne Guzman and Thomas Fahrner
+ * iguzmanl@calpoly.edu and tfahrner@calpoly.edu
+ * 3/14/2018
+ * Project 5
+ */
+
 import java.util.*;
 import java.io.*;
 
